@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+<h1>Редактирование клиента</h1>
+
+  <p>На указанной странице вы можете редактировать информацию связанную с <em>клиентом</em> фирмы</p>
+
+{% buttons %}
+  <a href="visas/" class="btn btn-primary">Визы</a>
+{% if passport_exist %}
+  <a href="passport/" class="btn btn-primary">Загранпаспорт</a>
+{% else %}
+  <a href="passport/create" class="btn btn-primary">Добавить информацию о загранпаспорте</a>
+  <a href="passport/create" class="btn btn-primary">Оформить загранпаспорт</a>
+{% endif %}
+{% endbuttons %}
+
+<form class="create-client-form" method="post">{% csrf_token %}
+  {% bootstrap_form form %}
+  {% buttons %}
+  <input type="submit" class="btn btn-primary" value="Сохранить">
+  {% endbuttons %}
+</form>
+
+{% endblock %}

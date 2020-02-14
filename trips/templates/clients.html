@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+<h1>Работа с клиентами</h1>
+
+  <p>На указанной странице вы можете редактировать информацию связанную с <em>Клиентами</em> фирмы</p>
+
+<h2>Введите номер телефона клиента для получения доступа к его данным</h2>
+
+<form class="create-client-form" method="post">{% csrf_token %}
+  {% bootstrap_form form %}
+  {% buttons %}
+  <input type="submit" class="btn btn-primary" name="find" value="Найти"/>
+  <input type="submit" class="btn btn-primary" name="create" value="Добавить клиента"/>
+  {% endbuttons %}
+</form>
+
+{% endblock %}

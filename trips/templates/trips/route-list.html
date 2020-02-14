@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+  <h1>Список маршрутов</h1>
+
+  <p>На указанной странице вы можете просматривать информацию связанную с <em>маршрутами</em></p>
+
+  {% if routes_list %}
+    <ul class="visas-list-ul">
+
+      {% for route in routes_list %}
+        <li class="visas-list-li">
+          <p><strong>Название:</strong> {{ route.name }}</p> 
+          <p><strong>Описание:</strong> {{ route.description }}</p> 
+          <p><strong>Цена:</strong> {{ route.price }}</p> 
+          <p><strong>Длительность:</strong> {{ route.duration }}</p> 
+          <a href="{{ route.get_absolute_url }}" class="btn btn-primary">Редактировать</a>
+        </li>
+      {% endfor %}
+
+    </ul>
+  {% else %}
+    <p>В базе данных нет маршрутов.</p>
+  {% endif %}       
+{% endblock %}

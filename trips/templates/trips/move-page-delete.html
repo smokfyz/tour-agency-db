@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+<h1>Удаление точки маршрута</h1>
+
+  <p>На указанной странице вы можете удалить <em>точку маршрута</em></p>
+
+{% buttons %}
+  <a href="../../../" class="btn btn-primary">Вернуться к маршруту</a>
+{% endbuttons %}
+
+
+<form class="create-client-form" method="post">
+  {% csrf_token %}
+  <p>Вы действительно хотите удалить "{{ object }}"?</p>
+  {% buttons %}
+    <input type="submit" class="btn btn-danger" value="Удалить">
+  {% endbuttons %}
+</form>
+
+{% endblock %}

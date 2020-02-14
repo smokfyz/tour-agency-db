@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1; charset=UTF-8">
+
+    <style type="text/css">
+        @font-face {
+            font-family: Roboto;
+            src: local('Roboto'), url(./static/fonts/OpenSans-Regular.ttf);
+        }
+        @font-face {
+            font-family: RobotoBold;
+            src: local('Roboto'), url(./static/fonts/OpenSans-Bold.ttf);
+        }
+        body {
+            font-family: Roboto;
+            font-size: 15px;
+        }
+        strong {
+            font-family: RobotoBold;
+        }
+    </style>
+
+</head>
+
+<body>
+  <h1>Ежемесячный отчет - Начиная с {{ date_month }}</h1>
+
+  <br>
+  <h2>Продано в этом месяце</h2>
+  {% if best_sold %}
+    {% for sold in sold_info %}
+      <p>
+        <strong>Название:</strong> {{ sold.route }}<br>
+        <strong>Продано:</strong> {{ sold.count }}<br>
+      </p>
+    {% endfor %}
+  {% else %}
+    <p>В этом месяце нет проданных путевок</p>
+  {% endif %} 
+  <p>
+    <strong>Выручка:</strong> {{ total_price }} рублей<br>
+  </p>
+
+  <br>
+  <h2>Пользовались наибольшим спросом</h2>
+  {% if best_sold %}
+    {% for sold in best_sold %}
+      <p>
+        <strong>Название:</strong> {{ sold.route }}<br>
+        <strong>Продано:</strong> {{ sold.count }}<br>
+      </p>
+    {% endfor %}
+  {% else %}
+    <p>В этом месяце все путевки оказались невостребованными</p>
+  {% endif %} 
+
+  <br>
+  <h2>Остались невостребованными</h2>
+  {% if bad_sold %}
+    {% for sold in bad_sold %}
+    <p>
+      <strong>Название:</strong> {{ sold.route }}<br>
+      <strong>Продано:</strong> 0<br>
+    </p>
+    {% endfor %}
+  {% else %}
+    <p>В этом месяце все путевки оказались востребованными</p>
+  {% endif %} 
+</body>
+</html>

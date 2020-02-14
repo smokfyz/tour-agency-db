@@ -1,0 +1,33 @@
+{% extends "base_generic.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+  <h1>Список виз</h1>
+
+  <p>На указанной странице вы можете редактировать информацию связанную с <em>визами</em></p>
+
+  {% buttons %}
+    <a href="create/" class="btn btn-primary">Добавить информацию о визе</a>
+    <a href="create/" class="btn btn-primary">Оформить визу</a>
+    <a href="../" class="btn btn-primary">Вернуться к информации о клиенте</a>
+  {% endbuttons %}
+
+  {% if visas_list %}
+    <ul class="visas-list-ul">
+
+      {% for visa in visas_list %}
+        <li class="visas-list-li">
+          <p><strong>Номер визы:</strong> {{ visa.country }}</p> 
+          <p><strong>Дата выдачи:</strong> {{ visa.issued_date }}</p> 
+          <p><strong>Дата окончания:</strong> {{ visa.close_date }}</p> 
+          <p><strong>Тип визы:</strong> {{ visa.visa_type }}</p>
+          <a href="{{ visa.get_absolute_url }}" class="btn btn-primary">Редактировать</a>
+        </li>
+      {% endfor %}
+
+    </ul>
+  {% else %}
+    <p>У клиента нет информации о визах.</p>
+  {% endif %}       
+{% endblock %}

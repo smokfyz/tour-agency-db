@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+<h1>Добавление загранпаспорта</h1>
+
+  <p>На указанной странице вы можете добавить информацию о <em>загранпаспорте</em></p>
+
+{% buttons %}
+  <a href="../../" class="btn btn-primary">Вернуться к информации о клиенте</a>
+{% endbuttons %}
+
+  <form class="create-client-form" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+      <input type="submit" class="btn btn-primary" value="Сохранить">
+    {% endbuttons %}
+  </form>
+
+{% endblock %}

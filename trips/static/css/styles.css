@@ -1,0 +1,32 @@
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.create-client-form {
+    width: 700px;
+}
+
+body {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.visas-list-li {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.visas-list-li > p {
+    margin: 0;
+}
+
+.visas-list-ul {
+    padding: 0 0 0 20px;
+}
+
+.btn {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}

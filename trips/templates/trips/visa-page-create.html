@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+<h1>Добавление визы</h1>
+
+  <p>На указанной странице вы можете добавить информацию о <em>визе</em></p>
+
+{% buttons %}
+  <a href="../" class="btn btn-primary">Вернуться к списку виз</a>
+{% endbuttons %}
+
+  <form class="create-client-form" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+      <input target="_blank" rel="noopener noreferrer" type="submit" class="btn btn-primary" value="Сохранить">
+    {% endbuttons %}
+  </form>
+
+{% endblock %}

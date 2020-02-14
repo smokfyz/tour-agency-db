@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+<h1>Работа с путевками</h1>
+
+  <p>На указанной странице вы можете редактировать информацию связанную с <em>Путевками</em> фирмы</p>
+
+{% buttons %}
+  <a href="list/" class="btn btn-primary">Информация о существующих путевках</a>
+  <a href="release-trips/" class="btn btn-primary">Выпустить путевки</a>
+  <a href="route/" class="btn btn-primary">Информация о существующих маршрутах</a>
+  <a href="route/create" class="btn btn-primary">Создать новый маршрут</a>
+{% endbuttons %}
+
+{% endblock %}

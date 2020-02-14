@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+<h1>Добавление точки маршрута</h1>
+
+  <p>На указанной странице вы можете добавить информацию о <em>точке маршрута</em></p>
+
+{% buttons %}
+  <a href="../../" class="btn btn-primary">Вернуться к маршруту</a>
+  <a href="city/" class="btn btn-primary">Добавить город</a>
+  <a href="transport/" class="btn btn-primary">Добавить транспорт</a>
+{% endbuttons %}
+
+  <form class="create-client-form" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+      <input type="submit" class="btn btn-primary" value="Сохранить">
+    {% endbuttons %}
+  </form>
+
+{% endblock %}

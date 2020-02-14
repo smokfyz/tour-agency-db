@@ -1,0 +1,71 @@
+{% extends "base_generic.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+<h1>Редактирование маршрута</h1>
+
+  <p>На указанной странице вы можете редактировать информацию связанную с <em>маршрутом</em></p>
+
+{% buttons %}
+  <a href="../" class="btn btn-primary">Вернуться к списку маршрутов</a>
+  <a href="moves/add/" class="btn btn-primary">Добавить точку маршрута</a>
+{% endbuttons %}
+
+{% if moves %}
+    <ul class="visas-list-ul">
+
+      {% for move in moves %}
+        <li class="visas-list-li">
+          <p><strong>Город:</strong> {{ move.city }}</p> 
+          <p><strong>Транспорт:</strong> {{ move.transport }}</p> 
+          <p><strong>Дата отъезда из данной точки:</strong> {{ move.departure_time }}</p> 
+          <p><strong>Дата прибытия в следующую точку маршрута:</strong> {{ move.arrival_time }}</p>
+          {% for hotel in hotels %}
+            {% if hotel and hotel.city == move.city %}
+            <p>
+              <strong>Отель:</strong> 
+              {{ hotel }}
+            </p>
+            {% endif %} 
+          {% endfor %}
+          <p>
+            <strong>Мероприятия:</strong>
+            {% if events %}
+              {% for event in events %}
+                {% if event.city == move.city %}
+                  <p>{{ event.event.name }} - {{ event.event.description }}</p>
+                  <a href="{{ move.get_absolute_url }}events/{{ event.id }}/delete/" class="btn btn-danger">Удалить</a>
+                {% endif %}
+              {% endfor %}
+            {% else %}
+              <p>Нет информации о мероприятиях.</p>
+            {% endif %} 
+          </p>
+          <a href="{{ move.get_absolute_url|add:'events/' }}" class="btn btn-primary">Добавить посещение мероприятий</a> 
+          {% for hotel in hotels %}
+            {% if hotel and hotel.city == move.city %}
+              <a href="{{ move.get_absolute_url|add:'hotel-update/' }}" class="btn btn-primary">Изменить отель</a>
+              {{ "<!--" }}
+            {% endif %}
+          {% endfor %}
+          <a href="{{ move.get_absolute_url|add:'hotel/' }}" class="btn btn-primary">Добавить отель</a>
+          {{ "<!--" }}{{ "-->" }}
+          <a href="{{ move.get_absolute_url }}" class="btn btn-primary">Редактировать</a>
+          <a href="{{ move.get_absolute_url|add:'delete/' }}" class="btn btn-danger">Удалить</a>
+        </li>
+      {% endfor %}
+
+    </ul>
+  {% else %}
+    <p>Нет информации о точках маршрута.</p>
+  {% endif %}       
+
+<form class="create-client-form" method="post">{% csrf_token %}
+  {% bootstrap_form form %}
+  {% buttons %}
+  <input type="submit" class="btn btn-primary" value="Сохранить">
+  {% endbuttons %}
+</form>
+
+{% endblock %}

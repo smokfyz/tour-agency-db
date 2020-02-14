@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1; charset=UTF-8">
+
+    <style type="text/css">
+        @font-face {
+            font-family: Roboto;
+            src: local('Roboto'), url(./static/fonts/OpenSans-Regular.ttf);
+        }
+        @font-face {
+            font-family: RobotoBold;
+            src: local('Roboto'), url(./static/fonts/OpenSans-Bold.ttf);
+        }
+        body {
+            font-family: Roboto;
+            font-size: 15px;
+        }
+        strong {
+            font-family: RobotoBold;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <p>
+        <strong>Идентификатор:</strong> {{ trip_sold.trip_number }} <br>
+        <strong>Стоимость для клиента:</strong> {{ price }} <br>
+        <strong>Ваша скидка:</strong> {{ discount }}% <br>
+        <strong>Дата продажи:</strong> {{ trip_sold.purchased_date }}<br>
+    </p>
+    
+  {% if moves %}
+    <ul class="visas-list-ul">
+
+      {% for move in moves %}
+        <li class="visas-list-li">
+          <p>
+            <strong>Город:</strong> {{ move.city }} <br>
+            <strong>Транспорт:</strong> {{ move.transport }}<br>
+            <strong>Дата отъезда из данной точки:</strong> {{ move.departure_time }} <br>
+            <strong>Дата прибытия в следующую точку маршрута:</strong> {{ move.arrival_time }} <br>
+          {% for hotel in hotels %}
+            {% if hotel and hotel.city == move.city %}
+              <strong>Отель:</strong>  
+              {{ hotel }} - {{ hotel.hotel.description }}<br>
+            {% endif %} 
+          {% endfor %}
+            <strong>Мероприятия:</strong><br>
+            {% if events %}
+              {% for event in events %}
+                {% if event.city == move.city %}
+                  {{ event.event.name }} - {{ event.event.description }}<br>
+                {% endif %}
+              {% endfor %}
+            {% else %}
+              Нет информации о мероприятиях.<br>
+            {% endif %} 
+          </p>
+        </li>
+      {% endfor %}
+
+    </ul>
+    {% if needed_passport %}
+      <strong>Требуется оформление загранпаспорта!</strong><br>
+      Стоимость оформления: {{ passport_price }}
+    {% endif %}
+    <br>
+    {% if visas_required %}
+      <strong>Требуется оформление виз!</strong><br>
+      {% for visa in visas_required %}
+        <strong>Страна:</strong> {{ visa.country }<br>
+        <strong>Стоимость:</strong> {{ visa.price }<br>
+      {% endfor %}
+    {% endif %}
+  {% else %}
+    Нет информации о точках маршрута.<br>
+  {% endif %} 
+</form>
+
+</body>
+</html>

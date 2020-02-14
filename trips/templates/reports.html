@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+<h1>Отчеты</h1>
+
+  <p>На указанной странице вы можете создать <em>отчеты</em> связанные с деятельностью фирмы</p>
+
+{% buttons %}
+  <a target="_blank" rel="noopener noreferrer" href="month/" class="btn btn-primary">Ежемесячный отчет</a target="_blank" rel="noopener noreferrer">
+  <a target="_blank" rel="noopener noreferrer" href="best/" class="btn btn-primary">Путевки с наибольшим спросом</a>
+{% endbuttons %}
+
+{% endblock %}

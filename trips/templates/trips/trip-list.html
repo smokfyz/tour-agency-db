@@ -1,0 +1,41 @@
+{% extends "base_generic.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+  <h1>Список путевок</h1>
+
+  <p>На указанной странице вы можете просматривать информацию связанную с <em>путевками</em></p>
+
+  <form class="create-client-form" action="" method="GET">
+    {% csrf_token %}
+    {% bootstrap_form filter.form %}
+    {% buttons %}
+      <input type="submit" class="btn btn-primary" value="Поиск" />
+    {% endbuttons %}
+  </form>
+
+  {% if trips_list %}
+    <ul class="visas-list-ul">
+
+      {% for trip in filter.qs %}
+        <li class="visas-list-li">
+          <p><strong>Маршрут:</strong> {{ trip.route_name }}</p> 
+          <p><strong>Дата отправления:</strong> {{ trip.departure_time }}</p>
+          <p><strong>Цена:</strong> {{ trip.route_name.price }}</p>
+          {% for tc in trips_count %}
+            {% if tc.route_name == trip.route_name_id %}
+              <p><strong>Количество путевок:</strong> {{ tc.count }}</p>
+            {% endif %}
+          {% endfor %}
+          {% buttons %}
+          <a href="/sale-trips/{{ trip.number }}/" class="btn btn-primary">Продать</a>
+        {% endbuttons %}
+        </li>
+      {% endfor %}
+
+    </ul>
+  {% else %}
+    <p>В базе данных нет путевок.</p>
+  {% endif %}       
+{% endblock %}

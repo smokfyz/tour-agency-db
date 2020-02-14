@@ -1,0 +1,34 @@
+{% extends "base_generic.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+<h1>Скидки</h1>
+
+  <p>Здесь вы можете редактировать <em>скидки</em></p>
+
+  {% if discount %}
+    <ul class="visas-list-ul">
+
+      {% for dis in discount %}
+        <li class="visas-list-li">
+          <p><strong>Количество путевок:</strong> {{ dis.bought }}</p> 
+          <p><strong>Размер скидки:</strong> {{ dis.discount }}%</p>
+          {% buttons %}
+            <a href="{{ dis.get_absolute_url|add:'/update/' }}" class="btn btn-primary">Редактировать</a>
+            <a href="{{ dis.get_absolute_url|add:'/delete/' }}" class="btn btn-danger">Удалить</a>
+            {% endbuttons %}
+        </li>
+      {% endfor %}
+
+    </ul>
+  {% else %}
+    <p>В базе данных нет скидок.</p>
+  {% endif %}  
+
+
+{% buttons %}
+    <a href="/discount/add/" class="btn btn-primary">Добавить скидку</a>
+{% endbuttons %}
+
+{% endblock %}

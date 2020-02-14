@@ -1,0 +1,7 @@
+Requirement already satisfied: xhtml2pdf in /home/smokfyz/.virtualenvs/tours/lib/python3.7/site-packages (0.2.3)
+Requirement already satisfied: Pillow in /home/smokfyz/.virtualenvs/tours/lib/python3.7/site-packages (from xhtml2pdf) (6.2.1)
+Requirement already satisfied: html5lib>=1.0 in /home/smokfyz/.virtualenvs/tours/lib/python3.7/site-packages (from xhtml2pdf) (1.0.1)
+Requirement already satisfied: six in /home/smokfyz/.virtualenvs/tours/lib/python3.7/site-packages (from xhtml2pdf) (1.13.0)
+Requirement already satisfied: pyPdf2 in /home/smokfyz/.virtualenvs/tours/lib/python3.7/site-packages (from xhtml2pdf) (1.26.0)
+Requirement already satisfied: reportlab>=3.0 in /home/smokfyz/.virtualenvs/tours/lib/python3.7/site-packages (from xhtml2pdf) (3.5.32)
+Requirement already satisfied: webencodings in /home/smokfyz/.virtualenvs/tours/lib/python3.7/site-packages (from html5lib>=1.0->xhtml2pdf) (0.5.1)
